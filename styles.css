@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -12,6 +13,7 @@ body {
     text-align: center;
     width: 90%;
     max-width: 400px;
+    flex-grow: 1;
 }
 
 button {
@@ -36,7 +38,7 @@ button:hover {
 }
 
 #card {
-    display: inline-block;
+    display: flex;
     padding: 20px;
     border: 2px solid #333;
     border-radius: 10px;
@@ -45,6 +47,26 @@ button:hover {
     transition: transform 0.6s ease-in-out, box-shadow 0.3s;
     width: 100%;
     box-sizing: border-box;
+}
+
+.card-half {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#theme1Container {
+    background-color: #ff4d4d; /* Rojo */
+    border-right: 1px solid #333;
+}
+
+#theme2Container {
+    background-color: #4da6ff; /* Celeste */
 }
 
 .hidden {
@@ -62,4 +84,14 @@ button:hover {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
 }
