@@ -121,4 +121,23 @@ document.getElementById("newCardButton").addEventListener("click", function() {
         // Remove spin animation
         card.classList.remove("spin");
     }, 600); // Match the duration of the CSS animation
+
+    // Botón para pantalla completa
+    const fullscreenButton = document.getElementById("fullscreenButton");
+    fullscreenButton.addEventListener("click", function() {
+        if (cardContainer.requestFullscreen) {
+            cardContainer.requestFullscreen();
+        } else if (cardContainer.webkitRequestFullscreen) { /* Safari */
+            cardContainer.webkitRequestFullscreen();
+        } else if (cardContainer.msRequestFullscreen) { /* IE11 */
+            cardContainer.msRequestFullscreen();
+        }
+    });
+    
 });
+
+
+
+
+    
+

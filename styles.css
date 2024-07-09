@@ -1,19 +1,19 @@
 body {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Usa toda la altura visible de la pantalla */
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #000000; /* Color de fondo */
+    color: #333; /* Color de texto principal */
 }
 
 .container {
     text-align: center;
     width: 90%;
     max-width: 400px;
-    flex-grow: 1;
+    position: relative; /* Importante para el posicionamiento relativo */
 }
 
 button {
@@ -27,6 +27,10 @@ button {
     transition: background-color 0.3s;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 10px; /* Espacio entre botones */
+    position: absolute; /* Posición absoluta para mantenerlo fijo */
+    left: 50%; /* Centrado horizontal */
+    transform: translateX(-50%); /* Centrado horizontal */
 }
 
 button:hover {
@@ -94,4 +98,11 @@ footer {
     width: 100%;
     position: fixed;
     bottom: 0;
+}
+
+#fullscreenButton {
+    position: absolute;
+    margin-top: 350px;
+    bottom: -250px;
+    right: -250px;
 }
