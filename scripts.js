@@ -1,143 +1,146 @@
-const themes = [
-    ["Caliente", "Frío"],
-    ["Dulce", "Salado"],
-    ["Grande", "Pequeño"],
-    ["Antiguo", "Moderno"],
-    ["Rápido", "Lento"],
-    ["Duro", "Suave"],
-    ["Brillante", "Oscuro"],
-    ["Divertido", "Aburrido"],
-    ["Ligero", "Pesado"],
-    ["Barato", "Caro"],
-    ["Simple", "Complejo"],
-    ["Peligroso", "Seguro"],
-    ["Feliz", "Triste"],
-    ["Común", "Raro"],
-    ["Sano", "Enfermo"],
-    ["Amigable", "Hostil"],
-    ["Relajante", "Estresante"],
-    ["Seco", "Mojado"],
-    ["Fuerte", "Débil"],
-    ["Limpio", "Sucio"],
-    ["Natural", "Artificial"],
-    ["Introvertido", "Extrovertido"],
-    ["Claro", "Oscuro"],
-    ["Frágil", "Resistente"],
-    ["Educado", "Grosero"],
-    ["Largo", "Corto"],
-    ["Inteligente", "Tonto"],
-    ["Sabio", "Ignorante"],
-    ["Creativo", "Rígido"],
-    ["Pobre", "Rico"],
-    ["Privado", "Público"],
-    ["Ordenado", "Desordenado"],
-    ["Pacífico", "Agresivo"],
-    ["Rico en detalles", "Sencillo"],
-    ["Atrevido", "Tímido"],
-    ["Famoso", "Desconocido"],
-    ["Ecológico", "Contaminante"],
-    ["Juvenil", "Maduro"],
-    ["Práctico", "Teórico"],
-    ["Justo", "Injusto"],
-    ["Tierno", "Cruel"],
-    ["Saludable", "No saludable"],
-    ["Optimista", "Pesimista"],
-    ["Lejano", "Cercano"],
-    ["Original", "Copia"],
-    ["Innovador", "Conservador"],
-    ["Preciso", "Vago"],
-    ["Convencional", "Excéntrico"],
-    ["Paciente", "Impaciente"],
-    ["Colorido", "Monocromático"],
-    ["Independiente", "Dependiente"],
-    ["Meticuloso", "Descuidado"],
-    ["Histórico", "Futurista"],
-    ["Formal", "Informal"],
-    ["Simpático", "Antipático"],
-    ["Abundante", "Escaso"],
-    ["Seguro", "Inseguro"],
-    ["Tradicional", "Moderno"],
-    ["Honesto", "Deshonesto"],
-    ["Delicado", "Tosco"],
-    ["Placentero", "Desagradable"],
-    ["Optimista", "Pesimista"],
-    ["Sincero", "Hipócrita"],
-    ["Flexible", "Rígido"],
-    ["Innovador", "Tradicional"],
-    ["Energético", "Apático"],
-    ["Motivador", "Desmotivador"],
-    ["Generoso", "Tacaño"],
-    ["Puntual", "Impuntual"],
-    ["Curioso", "Indiferente"],
-    ["Compasivo", "Insensible"],
-    ["Inspirador", "Desalentador"],
-    ["Calmado", "Ansioso"],
-    ["Tolerante", "Intolerante"],
-    ["Activo", "Pasivo"],
-    ["Humilde", "Arrogante"],
-    ["Decidido", "Indeciso"],
-    ["Conservador", "Liberal"],
-    ["Atractivo", "Repulsivo"],
-    ["Serio", "Juguetón"],
-    ["Modesto", "Presuntuoso"],
-    ["Dinámico", "Estático"],
-    ["Calmado", "Enérgico"],
-    ["Refinado", "Grosero"]
-];
 
-let usedThemes = [];
 
-document.getElementById("newCardButton").addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function() {
+    const cardContainer = document.getElementById("cardContainer");
     const card = document.getElementById("card");
     const theme1 = document.getElementById("theme1");
     const theme2 = document.getElementById("theme2");
-
-    if (usedThemes.length === themes.length) {
-        alert("Se han utilizado todas las tarjetas.");
-        return;
-    }
-    
-    // Apply spin animation
-    card.classList.add("spin");
-
-    setTimeout(() => {
-        // Choose a random theme that hasn't been used yet
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * themes.length);
-        } while (usedThemes.includes(randomIndex));
-        
-        const [theme1Text, theme2Text] = themes[randomIndex];
-        usedThemes.push(randomIndex);
-        
-        // Set the text
-        theme1.textContent = theme1Text;
-        theme2.textContent = theme2Text;
-        
-        // Show the card
-        card.classList.remove("hidden");
-        card.classList.add("visible");
-
-        // Remove spin animation
-        card.classList.remove("spin");
-    }, 600); // Match the duration of the CSS animation
-
-    // Botón para pantalla completa
+    const newCardButton = document.getElementById("newCardButton");
     const fullscreenButton = document.getElementById("fullscreenButton");
+
+    const themes = [
+        ["Caliente", "Frío"],
+        ["Dulce", "Salado"],
+        ["Grande", "Pequeño"],
+        ["Antiguo", "Moderno"],
+        ["Rápido", "Lento"],
+        ["Duro", "Suave"],
+        ["Brillante", "Oscuro"],
+        ["Divertido", "Aburrido"],
+        ["Ligero", "Pesado"],
+        ["Barato", "Caro"],
+        ["Simple", "Complejo"],
+        ["Peligroso", "Seguro"],
+        ["Feliz", "Triste"],
+        ["Común", "Raro"],
+        ["Sano", "Enfermo"],
+        ["Amigable", "Hostil"],
+        ["Relajante", "Estresante"],
+        ["Seco", "Mojado"],
+        ["Fuerte", "Débil"],
+        ["Limpio", "Sucio"],
+        ["Natural", "Artificial"],
+        ["Claro", "Oscuro"],
+        ["Frágil", "Resistente"],
+        ["Educado", "Grosero"],
+        ["Largo", "Corto"],
+        ["Inteligente", "Tonto"],
+        ["Pobre", "Rico"],
+        ["Privado", "Público"],
+        ["Ordenado", "Desordenado"],
+        ["Pacífico", "Violento"],
+        ["SuperFamoso", "Desconocido"],
+        ["Ecológico", "Contaminante"],
+        ["Joven", "Viejo"],
+        ["Tierno", "Cruel"],
+        ["Saludable", "No saludable"],
+        ["Lejano", "Cercano"],
+        ["Convencional", "Excéntrico"],
+        ["Colorido", "Monocromático"],
+
+        ["Se ve como una persona", "No se ve como una persona"],
+        ["Temporal", "Permanente"],
+        ["Suave", "Duro"],
+        ["Compañía malévola", "Compañía menos malévola"]
+        ["Bueno", "Malo"],
+        ["Medianamente Adictivo", "Altamente Adictivo"],
+        ["Creíble", "Increíble"],
+        ["Lugar Tranquilo", "Lugar Ruidoso"],
+        ["Se Ve Como Una Persona", "No Se Ve Como Una Persona"],
+        ["Temporal", "Permanente"],
+        ["Suave", "Duro"],
+        ["Compañía Malévola", "Compañía Menos Malévola"],
+        ["Actividad No Popular", "Actividad Popular"],
+        ["Completo", "Dividido"],
+        ["Comedia", "Drama"],
+        ["Mejor Atleta", "Peor Atleta"],
+        ["Poco Útil Durante Una Emergencia", "Útil Durante Una Emergencia"],
+        ["Nombre de Perro", "Nombre de Gato"],
+        ["Legal", "Ilegal"],
+        ["Saludo Normal", "Saludo Raro"],
+        ["Mascota Común", "Mascota Exótica"],
+        ["Feo", "Hermoso"],
+        ["Modelo a Seguir", "Mala Influencia"],
+        ["Invento Útil", "Invento Inútil"],
+        ["Oscuro", "Claro"],
+        ["Buena Materia", "Mala Materia"],
+        ["Hábito Necesario", "Hábito Innecesario"],
+        ["Lugar Fácil de Sentarse", "Lugar Difícil de Sentarse"],
+        ["Lugar Fácil de Conseguir Agua", "Lugar Dificil de Conseguir Agua"],
+        ["Héroe", "Villano"],
+        ["Gusto Rico", "Gusto Feo"],
+        ["Peludo", "Sin Pelo"],
+        ["Fácil de Hacer", "Difícil de Hacer"],
+        ["Mejor Caliente", "Mejor Frío"],
+        ["Peligroso", "Seguro"],
+        ["Buena Película", "Mala Película"],
+        ["Sabroso", "Sin Sabor"],
+        ["Horizontal", "Vertical"],
+        ["Difícil de Encontrar", "Fácil de Encontrar"],
+        ["Aburrido", "Divertido"],
+        ["Incoloro", "Colorido"],
+        ["Te Hace Sentir Mal", "Te Hace Sentir Bien"],
+        ["Perdonable", "Imperdonable"],
+        ["Persona Aburrida", "Persona Divertida"],
+        ["La Peor Tarea", "La Mejor Tarea"],
+        ["Fobia Racional", "Fobia Irracional"],
+        ["Sin Importancia", "Importante"],
+        ["Vicio", "Virtud"],
+        ["Poco Fiable", "Fiable"],
+        ["Inestable", "Estable"],
+        ["Actividad Popular", "Actividad Impopular"],
+        ["Buen Ingrediente Para Pizza", "Mal Ingrediente Para Pizza"]
+        ["Viaje Largo", "Viaje Corto"],
+        ["Lugar Grande", "Lugar Pequeño"],
+        ["Comida Saludable", "Comida Chatarra"]
+    ];
+
+    let usedThemes = [];
+
+    newCardButton.addEventListener("click", function() {
+        if (usedThemes.length === themes.length) {
+            alert("Se han utilizado todas las tarjetas.");
+            return;
+        }
+
+        // Apply spin animation
+        card.classList.add("spin");
+
+        setTimeout(() => {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * themes.length);
+            } while (usedThemes.includes(randomIndex));
+            
+            const [theme1Text, theme2Text] = themes[randomIndex];
+            usedThemes.push(randomIndex);
+            
+            theme1.textContent = theme1Text;
+            theme2.textContent = theme2Text;
+            
+            card.classList.remove("hidden");
+            card.classList.add("visible");
+            card.classList.remove("spin");
+        }, 600); // Duration of the spin animation
+    });
+
     fullscreenButton.addEventListener("click", function() {
-        if (cardContainer.requestFullscreen) {
-            cardContainer.requestFullscreen();
-        } else if (cardContainer.webkitRequestFullscreen) { /* Safari */
-            cardContainer.webkitRequestFullscreen();
-        } else if (cardContainer.msRequestFullscreen) { /* IE11 */
-            cardContainer.msRequestFullscreen();
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         }
     });
-    
 });
-
-
-
-
-    
-
